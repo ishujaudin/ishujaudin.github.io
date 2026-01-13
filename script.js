@@ -89,3 +89,38 @@ if (profileImg) {
         this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="250" height="250"%3E%3Crect fill="%23e5e7eb" width="250" height="250"/%3E%3Ctext fill="%239ca3af" font-family="sans-serif" font-size="20" dy="10.5" font-weight="bold" x="50%25" y="50%25" text-anchor="middle"%3EProfile%3C/text%3E%3C/svg%3E';
     };
 }
+
+// Project filter functionality
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        const filter = button.getAttribute('data-filter');
+        
+        projectCards.forEach(card => {
+            if (filter === 'all') {
+                card.style.display = 'flex';
+            } else {
+                const category = card.getAttribute('data-category');
+                if (category === filter) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        });
+    });
+});
+
+// Handle project image placeholders
+document.querySelectorAll('.project-image').forEach(img => {
+    img.onerror = function() {
+        this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%231a1a1a" width="400" height="300"/%3E%3Ctext fill="%23666" font-family="sans-serif" font-size="16" x="50%25" y="50%25" text-anchor="middle"%3EProject Screenshots%3C/text%3E%3C/svg%3E';
+    };
+});
