@@ -708,6 +708,11 @@ section {
         grid-template-columns: 1fr;
     }
 
+    .skills-description {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
     .projects-grid {
         grid-template-columns: 1fr;
     }
